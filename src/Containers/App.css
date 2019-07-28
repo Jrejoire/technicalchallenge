@@ -1,0 +1,29 @@
+
+.app{
+	/*min-height: 1200px;
+	min-width: 1600px;*/
+	height: 100%;
+	width: 100vw;	
+}
+
+.menu{
+	padding-top: 10px;
+	text-align: left;
+}
+
+.main{
+	padding: 20px 0px;
+}
+
+.searchBar{
+	padding: 5px;
+
+}
+
+.title{
+	color: black;
+	font-size: 16px;
+	text-align: left;
+	margin-bottom: 20px;
+}
+

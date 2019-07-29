@@ -7,19 +7,19 @@ const Actions = () => {
 	return(
 		<Row>
 			<Col span={12}>
-				<Link to='/IssueToken'>             
-				    <Button type="primary">
-				    	Issue Token
-				    </Button>
-		        </Link>
-		    </Col>     
-		    
-		    <Col span={12}>
+			    <Button type="primary">
+			    	<Link to='/IssueToken'>
+			    	Issue Token
+			    	</Link>
+			    </Button>
+			</Col>
+			<Col span={12}>
 		        <Button type="normal" icon='download'>
 		            Export to CSV
 		        </Button>
-		    </Col>
-	    </Row> 
-)};
+	        </Col>	
+        </Row>
+	)
+};
 
 export default Actions;

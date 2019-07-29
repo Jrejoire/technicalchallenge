@@ -1,27 +1,56 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, InputNumber, Button, Select } from 'antd';
 
 const { Option } = Select;
 
 class TokenForm extends React.Component {
 	state={
 		listOfCountries:[],
+		tokenData:[],
+		issuedToken:[],
+		date:'',
 	};
 
-	handleCountryData=()=>{
+	componentDidMount(){
 	    fetch('https://restcountries.eu/rest/v2/all')
 	    .then(answer => answer.json())
-	    .then(countries => countries.map(country=>country.name))
-	    .then(name => this.setState({ listOfCountries:name }))
-	    .catch(error=> console.log('error :', error));
-	};
+	    .then(countries => this.setState({ listOfCountries: countries }))
+	    .catch(error=> console.log('error :', error));	
+
+	    localStorage.getItem('tokenData') && this.setState({ 
+	      tokenData: JSON.parse(localStorage.getItem('tokenData')),
+	      isLoading: false
+	    });
+
+	    // Setting today's date
+	    let mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];  
+	    let date = new Date();
+	    let dateDuJour = date.getDate() + " ";   // numero du jour
+	    dateDuJour += mois[date.getMonth()] + " ";   // mois
+	    dateDuJour += date.getFullYear();
+	    this.setState({ date : dateDuJour });
+	}
+
 
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
-			  console.log('Received values of form: ', values);
+				const { tokenData, date, issuedToken } = this.state;
+				values.CreationDate = date; 
+				values.key = tokenData.length+1;
+				this.setState({ issuedToken: [values] });
+				console.log('Received values of form: ', values);
+
+				localStorage.getItem('tokenData') && this.setState({ 
+			      tokenData: JSON.parse(localStorage.getItem('tokenData')),
+			      isLoading: false
+			    });
+	    
+	    		tokenData.push(issuedToken);
+
+	    		localStorage.setItem('tokenData', JSON.stringify(tokenData));
 			}
 		});
 	};
@@ -29,6 +58,8 @@ class TokenForm extends React.Component {
 	render(){
 		const { getFieldDecorator } = this.props.form;
 		const { listOfCountries } = this.state;
+		const countryName = listOfCountries.map(country => 
+			({ name: country.name, code: country.alpha2Code }));
 
 		const formItemLayout = {
 			labelCol: {
@@ -52,76 +83,36 @@ class TokenForm extends React.Component {
 		return (
 			<Form {...formItemLayout} onSubmit={this.handleSubmit}>
 		        <Form.Item label="Token Name">
-		        	{getFieldDecorator('Token Name', 
-			        	{
-	            			rules: [
-	            				{ 
-	            					required: true, 
-	            					message: 'Please enter your token name!' 
-	            				}
-	            			],    					
-            			})
-            				(<Input placeholder='Enter token name'/>)
-            		}	
+		        	{getFieldDecorator('TokenName', {
+			        	rules: [{ required: true, message: 'Please enter your token name!' }],
+	            	})(<Input placeholder="Enter token name"/>)}
 		        </Form.Item>
 		        <Form.Item label="Token Ticker">
-		        	{getFieldDecorator('Token Ticker', 
-			        	{
-	            			rules: [
-	            				{ 
-	            					required: true, 
-	            					message: 'Please input your token ticker!' 
-	            				}
-	            			],    					
-            			})
-            				(<Input placeholder='Enter token ticker'/>)
-            		}		         	 
+		        	{getFieldDecorator('TokenTicker', {
+            			rules: [{ required: true, message: 'Please input your token ticker!' }],				
+        			})(<Input placeholder='Enter token ticker'/>)}		         	 
 		        </Form.Item>
 		        <Form.Item label="Total Supply">
-		        	{getFieldDecorator('Total Supply', 
-			        	{
-	            			rules: [
-	            				{ 
-	            					required: true, 
-	            					message: 'Please input the total supply!' 
-	            				}
-	            			],    					
-            			})
-            				(<Input placeholder='Enter total supply'/>)
-            		}	
-		        </Form.Item>
+		        	{getFieldDecorator('TotalSupply', { 
+			        	rules: [{ required: true, message: 'Please input the total supply!' }],
+	            	})(<InputNumber placeholder='Enter total supply' style={{ width: '100%' }}/>)}		
+	          	</Form.Item>
 		        <Form.Item label="Issuer Name">
-		        	{getFieldDecorator('Issuer Name', 
-			        	{
-	            			rules: [
-	            				{ 
-	            					required: true, 
-	            					message: 'Please input the name of the issuer!' 
-	            				}
-	            			],    					
-            			})
-            				(<Input placeholder='Enter issuer name'/>)
-            		}	
-		        </Form.Item>
+		        	{getFieldDecorator('IssuerName', {
+            			rules: [{ required: true, message: 'Please input the name of the issuer!' }],
+            		})(<Input placeholder='Enter issuer name'/>)}		
+	            </Form.Item>
 		        <Form.Item label="Token Template" required="true">
-		        	{getFieldDecorator('Token Template', 
-			        	{
-	            			rules: [
-	            				{ 
-	            					required: true, 
-	            					message: 'Please input the token template!' 
-	            				}
-	            			],    					
-            			})
-            				(<Input placeholder='Enter token template'/>)
-            		}	
+		        	{getFieldDecorator('Template', { 
+            			rules: [{ required: true, message: 'Please input the token template!' }],
+	            	})(<Input placeholder='Enter token template'/>)}			 
 		        </Form.Item>
 		        <Form.Item label="Country" required="true">
-	     			<Select defaultValue="Switzerland">
-				        {listOfCountries.map((x,y) => 
-				        	<Option value={y}>{x}</Option>)			    		
-				        }
-				    </Select>
+	     			{getFieldDecorator('Country', {initialValue: 'Switzerland'}, {
+						rules: [{ required: true, message: 'Please select your country!' }],
+					})(<Select placeholder="Please select a country">
+						{countryName.map(country => <Option key={country.code} value={country.name}>{country.name}</Option>)}
+				    </Select>)}	   		    		
 	        	</Form.Item>
 	        	<Form.Item {...buttonFormItemLayout}>
 			        <Button 

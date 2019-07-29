@@ -22,9 +22,7 @@ const InlineMenu = () => {
 	                />
 					Issue Token
 				</Link>
-			</Menu.Item>
-			
-			
+			</Menu.Item>			
 			<Menu.Item style={{ paddingLeft: '25%' }}>
 				<Link to='/'>
 					<Icon 

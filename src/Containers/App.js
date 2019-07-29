@@ -15,7 +15,7 @@ class App extends Component {
     return (
      <BrowserRouter> 
         <div className='app'>
-          <Row className='layout' gutter={16}>
+          <Row type="flex" justify="space-around" gutter={16}>
             <Col span={6} className='menu'>
                <InlineMenu/>
             </Col>
@@ -39,7 +39,7 @@ class Home extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     const data = [
       { 
         key:'1',
@@ -52,16 +52,12 @@ class Home extends Component {
       },
     ];
 
-    this.setState({ tokenData:data });
+    localStorage.setItem('tokenData', JSON.stringify(data));
 
     localStorage.getItem('tokenData') && this.setState({ 
       tokenData: JSON.parse(localStorage.getItem('tokenData')),
       isLoading: false
     });
-  }
-
-  componentDidMount(){
-    localStorage.setItem('tokenData', JSON.stringify(this.state.tokenData));
   }
 
   componentWillUpdate(nextProps, nextState){
@@ -88,19 +84,16 @@ class Home extends Component {
         <Row>
           <h1 className='title'>Token List</h1>
         </Row>
-
-        <Row className='content' gutter={16}>
+        <Row type="flex" justify="center" gutter={36}>
           <Col span={18}>
             <SearchBar searchChange={this.onSearchChange}/>
           </Col>
-
-          <Col span={6}>
-            <Actions />
-          </Col>
+          <Actions />
         </Row>
-
-        <Row>            
-          <GridData tokenProp={filteredTokens}/>
+        <Row>
+          <Col span={23}>            
+            <GridData tokenProp={filteredTokens}/>
+          </Col>
         </Row>      
       </div> 
     );
@@ -108,7 +101,6 @@ class Home extends Component {
 }
 
 class IssueToken extends Component {
-
   render() {
     return (
       <div className='main'>

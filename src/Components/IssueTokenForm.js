@@ -1,16 +1,17 @@
-import React from 'react';
-import 'antd/dist/antd.css';
+import React, { Component } from 'react';
 import { Form, Input, InputNumber, Button, Select } from 'antd';
+import 'antd/dist/antd.css';
 
 const { Option } = Select;
 
-class TokenForm extends React.Component {
-	state={
-		listOfCountries:[],
-		tokenData:[],
-		issuedToken:[],
-		date:'',
-	};
+class TokenForm extends Component {
+	constructor(){
+	    super();
+	    this.state = {
+			listOfCountries:[],
+			formValues:{},
+		};
+	}
 
 	componentDidMount(){
 	    fetch('https://restcountries.eu/rest/v2/all')
@@ -18,42 +19,25 @@ class TokenForm extends React.Component {
 	    .then(countries => this.setState({ listOfCountries: countries }))
 	    .catch(error=> console.log('error :', error));	
 
-	    localStorage.getItem('tokenData') && this.setState({ 
+	    /*localStorage.getItem('tokenData') && this.setState({ 
 	      tokenData: JSON.parse(localStorage.getItem('tokenData')),
 	      isLoading: false
-	    });
+	    });*/
 
-	    // Setting today's date
-	    let mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];  
-	    let date = new Date();
-	    let dateDuJour = date.getDate() + " ";   // numero du jour
-	    dateDuJour += mois[date.getMonth()] + " ";   // mois
-	    dateDuJour += date.getFullYear();
-	    this.setState({ date : dateDuJour });
+	    // Setting today's date   
 	}
 
-
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
-				const { tokenData, date, issuedToken } = this.state;
-				values.CreationDate = date; 
-				values.key = tokenData.length+1;
-				this.setState({ issuedToken: [values] });
 				console.log('Received values of form: ', values);
-
-				localStorage.getItem('tokenData') && this.setState({ 
-			      tokenData: JSON.parse(localStorage.getItem('tokenData')),
-			      isLoading: false
-			    });
-	    
-	    		tokenData.push(issuedToken);
-
-	    		localStorage.setItem('tokenData', JSON.stringify(tokenData));
+				this.setState ({ formValues: values });
 			}
 		});
-	};
+	}
+
+
 
 	render(){
 		const { getFieldDecorator } = this.props.form;
@@ -80,8 +64,9 @@ class TokenForm extends React.Component {
 				},
 			},
 		};
+
 		return (
-			<Form {...formItemLayout} onSubmit={this.handleSubmit}>
+			<Form {...formItemLayout} onSubmit={this.handleSubmit && this.props.newToken}>
 		        <Form.Item label="Token Name">
 		        	{getFieldDecorator('TokenName', {
 			        	rules: [{ required: true, message: 'Please enter your token name!' }],

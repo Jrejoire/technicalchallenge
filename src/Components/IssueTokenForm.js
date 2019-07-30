@@ -32,7 +32,7 @@ class TokenForm extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
-				this.setState ({ formValues: values });
+				this.props.newToken(values)
 			}
 		});
 	}

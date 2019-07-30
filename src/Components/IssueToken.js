@@ -6,7 +6,7 @@ import WrappedTokenForm from '../Components/IssueTokenForm';
 
 class IssueToken extends Component {
   render() {
-  	const { issuedToken } = this.props;
+  	const { newTokenCallback } = this.props;
     return (
       <div className='main'>
         <Row>
@@ -14,7 +14,7 @@ class IssueToken extends Component {
         </Row>
         <Row className='content' gutter={16}>
           <Col span={12}>
-            <WrappedTokenForm newToken={issuedToken} />
+            <WrappedTokenForm newToken={newTokenCallback} />
           </Col>
         </Row>      
       </div> 

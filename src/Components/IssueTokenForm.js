@@ -9,7 +9,7 @@ class TokenForm extends Component {
 	    super();
 	    this.state = {
 			listOfCountries:[],
-			formValues:{},
+			formValues:'',
 		};
 	}
 
@@ -32,9 +32,10 @@ class TokenForm extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
-				this.props.newToken(values)
+				this.setState ({ formValues: values });
 			}
 		});
+		this.props.newToken(this.state.formValues);
 	}
 
 
@@ -66,7 +67,7 @@ class TokenForm extends Component {
 		};
 
 		return (
-			<Form {...formItemLayout} onSubmit={this.handleSubmit && this.props.newToken}>
+			<Form {...formItemLayout} onSubmit={this.handleSubmit}>
 		        <Form.Item label="Token Name">
 		        	{getFieldDecorator('TokenName', {
 			        	rules: [{ required: true, message: 'Please enter your token name!' }],

@@ -24,8 +24,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      tokenData:[],
-      issuedToken:[],
+      initialTokenData:[],
+      issuedTokenData:[],
       date:'',
     }
   }
@@ -33,10 +33,10 @@ class App extends Component {
   componentDidMount(){
     this.setsDate();
     
-    localStorage.setItem('tokenData', JSON.stringify(initialData));
+    localStorage.setItem('initialTokenData', JSON.stringify(initialData));
 
-    localStorage.getItem('tokenData') && this.setState({ 
-      tokenData: JSON.parse(localStorage.getItem('tokenData')),
+    localStorage.getItem('initialTokenData') && this.setState({ 
+      initialTokenData: JSON.parse(localStorage.getItem('initialTokenData')),
       isLoading: false
     });
 
@@ -50,12 +50,6 @@ class App extends Component {
     localStorage.setItem('tokenData', JSON.stringify(tokenData));*/
   }
 
-  
-
-  componentWillUpdate(nextProps, nextState){
-    localStorage.setItem('tokenData', JSON.stringify(nextState.tokenData));
-  }
-
   setsDate = () => {
     let mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", 
       "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];  
@@ -66,16 +60,20 @@ class App extends Component {
     this.setState({ date : dateDuJour });
   }
 
-  handleNewToken = (e,values) => {
-    console.log('TEST')
+  newTokenCallback = (values) => {
+    this.setState({ issuedTokenData : values })
     /*const { tokenData, date } = this.state;
-      values.CreationDate = date; 
-      values.key = tokenData.length+1;
-      this.setState({ issuedToken: values });*/
+    values.CreationDate = date; 
+    values.key = tokenData.length+1;
+    this.setState({ issuedToken: values });*/
   }
 
   render() {
-    const { tokenData } = this.state;
+    const { initialTokenData, issuedTokenData } = this.state;
+    const displayedTokenData = [
+      ...initialTokenData, 
+      ...issuedTokenData
+    ];
     return (
      <BrowserRouter> 
         <div className='app'>
@@ -85,9 +83,9 @@ class App extends Component {
             </Col>
             <Col span={18}>
               <Route exact path='/' render={(props) => 
-                <Home  tokenDataProp={tokenData} />}/>           
+                <Home  tokenDataProp={displayedTokenData} />}/>           
               <Route path='/IssueToken' render={(props) => 
-                <IssueToken tokenDataProp={tokenData} issuedToken={this.handleNewToken} />}/>
+                <IssueToken newTokenCallback={this.newTokenCallback} />}/>
             </Col>
           </Row>
         </div>

@@ -94,13 +94,10 @@ class App extends Component {
   }
 
   handleDelete = (key) =>{
-    console.log(key);
     if (this.state.initialTokenData.some(token=>token.key === key)){
-      console.log("key in init data")
       const deletedInitialData = this.state.initialTokenData.filter(token => token.key !==key);
       this.setState ({ initialTokenData : deletedInitialData });
     } else {
-      console.log("key in issue data")
       const deletedIssueToken = this.state.issuedTokenData.filter(token => token.key !==key);
       this.setState ({ issuedTokenData : deletedIssueToken });
     }   

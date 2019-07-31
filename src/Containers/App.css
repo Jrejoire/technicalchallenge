@@ -1,7 +1,7 @@
 
 .app{
-	min-height: 1200px;
-	min-width: 1600px;
+	max-height: 1200px;
+	max-width: 1600px;
 	height: 100%;
 	width: 100vw;	
 }

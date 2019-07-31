@@ -42,7 +42,7 @@ class GridData extends Component {
 			     	<Icon 
 			     		type="delete"
 			     		style={{ color: 'rgba(0,0,0,.25)', padding:'10px' }}
-			     		onClick={(e) => { this.onDelete(record.key, e); }}
+			     		onClick={(e)=>{this.onDelete(record.key,e);}}
 			     	/>      	
 		    	),
 			},

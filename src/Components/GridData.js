@@ -49,6 +49,7 @@ class GridData extends Component {
 		];
 	}
 
+	//Callback to App component
 	onDelete = (key, e) => {
 		e.preventDefault();
 		this.props.handleDelete(key);

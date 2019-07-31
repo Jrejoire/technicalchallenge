@@ -47,6 +47,7 @@ class App extends Component {
       issuedTokenData: JSON.parse(localStorage.getItem('issuedTokenData')),
       isLoading: false
     });
+    
     //Udapting displayed token state at start.
     const { initialTokenData, issuedTokenData } = this.state;
     const displayedTokenData = [...initialTokenData, ...issuedTokenData];

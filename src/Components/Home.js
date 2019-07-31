@@ -26,6 +26,7 @@ class Home extends Component {
     const { searchfield } = this.state;
     const { tokenDataProp, deleteToken } = this.props;
 
+    //to filter the search
     const filteredTokens = tokenDataProp.filter(token =>{
       return token.TokenName.toLowerCase().includes(searchfield.toLowerCase())
           || token.TokenTicker.toLowerCase().includes(searchfield.toLowerCase())

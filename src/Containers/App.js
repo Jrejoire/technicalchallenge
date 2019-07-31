@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
@@ -108,7 +108,7 @@ class App extends Component {
     const { displayedTokenData } = this.state;
 
     return (
-     <BrowserRouter> 
+     <HashRouter basename='/'> 
         <div className='app'>
           <Row type="flex" justify="space-around" gutter={16}>
             <Col span={6} className='menu'>
@@ -122,7 +122,7 @@ class App extends Component {
             </Col>
           </Row>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

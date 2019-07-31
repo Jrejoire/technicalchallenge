@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/technicalchallenge/static/css/main.fe80a3d6.chunk.css",
+    "main.js": "/technicalchallenge/static/js/main.689797c2.chunk.js",
+    "main.js.map": "/technicalchallenge/static/js/main.689797c2.chunk.js.map",
+    "runtime~main.js": "/technicalchallenge/static/js/runtime~main.bbb978e9.js",
+    "runtime~main.js.map": "/technicalchallenge/static/js/runtime~main.bbb978e9.js.map",
+    "static/css/2.a317ec87.chunk.css": "/technicalchallenge/static/css/2.a317ec87.chunk.css",
+    "static/js/2.c7d755a6.chunk.js": "/technicalchallenge/static/js/2.c7d755a6.chunk.js",
+    "static/js/2.c7d755a6.chunk.js.map": "/technicalchallenge/static/js/2.c7d755a6.chunk.js.map",
+    "index.html": "/technicalchallenge/index.html",
+    "precache-manifest.042204777d6093e8c92ef47c14c7d70f.js": "/technicalchallenge/precache-manifest.042204777d6093e8c92ef47c14c7d70f.js",
+    "service-worker.js": "/technicalchallenge/service-worker.js",
+    "static/css/2.a317ec87.chunk.css.map": "/technicalchallenge/static/css/2.a317ec87.chunk.css.map",
+    "static/css/main.fe80a3d6.chunk.css.map": "/technicalchallenge/static/css/main.fe80a3d6.chunk.css.map"
+  }
+}

@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "91b28bd4d8d5694988dccae48a8b00a9",
+    "revision": "e8f9c40642911326cd7c48f467ad40df",
     "url": "/technicalchallenge/index.html"
   },
   {
-    "revision": "58291d57cd57269588f9",
+    "revision": "7781305bc478d08dd004",
     "url": "/technicalchallenge/static/css/2.a317ec87.chunk.css"
   },
   {
-    "revision": "10df2395dbfdc9c870cf",
+    "revision": "84507cb0c5063c0eee86",
     "url": "/technicalchallenge/static/css/main.fe80a3d6.chunk.css"
   },
   {
-    "revision": "58291d57cd57269588f9",
-    "url": "/technicalchallenge/static/js/2.c7d755a6.chunk.js"
+    "revision": "7781305bc478d08dd004",
+    "url": "/technicalchallenge/static/js/2.c7ee0fac.chunk.js"
   },
   {
-    "revision": "10df2395dbfdc9c870cf",
-    "url": "/technicalchallenge/static/js/main.689797c2.chunk.js"
+    "revision": "84507cb0c5063c0eee86",
+    "url": "/technicalchallenge/static/js/main.f7bef1e4.chunk.js"
   },
   {
     "revision": "f59e4bc7ea84573c7b4a",

@@ -24,7 +24,7 @@ class Home extends Component {
 
   render(){
     const { searchfield } = this.state;
-    const { tokenDataProp } = this.props;
+    const { tokenDataProp, deleteToken } = this.props;
 
     const filteredTokens = tokenDataProp.filter(token =>{
       return token.TokenName.toLowerCase().includes(searchfield.toLowerCase())
@@ -46,7 +46,7 @@ class Home extends Component {
         </Row>
         <Row>
           <Col span={23}>            
-            <GridData tokenProp={filteredTokens}/>
+            <GridData tokenProp={filteredTokens} handleDelete={deleteToken}/>
           </Col>
         </Row>      
       </div> 

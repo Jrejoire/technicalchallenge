@@ -5,8 +5,9 @@ import 'antd/dist/antd.css';
 import WrappedTokenForm from '../Components/IssueTokenForm';
 
 class IssueToken extends Component {
+
   render() {
-  	const { newTokenCallback } = this.props;
+    const { callbackMethod } = this.props;
     return (
       <div className='main'>
         <Row>
@@ -14,7 +15,7 @@ class IssueToken extends Component {
         </Row>
         <Row className='content' gutter={16}>
           <Col span={12}>
-            <WrappedTokenForm newToken={newTokenCallback} />
+            <WrappedTokenForm newToken={callbackMethod} />
           </Col>
         </Row>      
       </div> 

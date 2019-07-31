@@ -9,22 +9,20 @@ class TokenForm extends Component {
 	    super();
 	    this.state = {
 			listOfCountries:[],
-			formValues:'',
 		};
 	}
 
+	//Fetching list of country names
 	componentDidMount(){
 	    fetch('https://restcountries.eu/rest/v2/all')
 	    .then(answer => answer.json())
 	    .then(countries => this.setState({ listOfCountries: countries }))
 	    .catch(error=> console.log('error :', error));	
+	}
 
-	    /*localStorage.getItem('tokenData') && this.setState({ 
-	      tokenData: JSON.parse(localStorage.getItem('tokenData')),
-	      isLoading: false
-	    });*/
-
-	    // Setting today's date   
+	//Sending back token data to App component
+	callbackMethod = (values) =>{
+		this.props.newToken(values);
 	}
 
 	handleSubmit = (e) => {
@@ -32,13 +30,12 @@ class TokenForm extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
-				this.setState ({ formValues: values });
+				this.callbackMethod(values);
+				this.props.form.resetFields()
+				alert('New token added!')
 			}
-		});
-		this.props.newToken(this.state.formValues);
+		});	
 	}
-
-
 
 	render(){
 		const { getFieldDecorator } = this.props.form;

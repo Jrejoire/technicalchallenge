@@ -7,8 +7,8 @@ class GridData extends Component {
     super(props);
 		this.columns = [{
 				title: 'Token name',
-				dataIndex: 'TokenName',
-				key: 'TokenName',
+				dataIndex: 'tokenName',
+				key: 'tokenName',
 			},
 			{
 				title: 'Token ticker',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import { Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 
 import SearchBar from '../Components/SearchBar';
@@ -7,32 +7,31 @@ import Actions from '../Components/ActionButtons';
 import GridData from '../Components/GridData';
 
 class Home extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      searchfield:'',
+      searchField: '',
     }
   }
 
   onSearchChange = (event) => {
-    if(event.target.value.length>2){
-      this.setState({ searchfield: event.target.value })
-    } else{
-      this.setState({ searchfield:'' })
-    };
+    if (event.target.value.length > 2) {
+      this.setState({ searchField: event.target.value })
+    } else {
+      this.setState({ searchField: '' })
+    }
   }
 
-  render(){
-    const { searchfield } = this.state;
+  render() {
+    const { searchField } = this.state;
     const { tokenDataProp, deleteToken } = this.props;
 
     //to filter the search
-    const filteredTokens = tokenDataProp.filter(token =>{
-      return token.TokenName.toLowerCase().includes(searchfield.toLowerCase())
-          || token.TokenTicker.toLowerCase().includes(searchfield.toLowerCase())
-          || token.IssuerName.toLowerCase().includes(searchfield.toLowerCase());
+    const filteredTokens = tokenDataProp.filter(token => {
+      return token.tokenName.toLowerCase().includes(searchField.toLowerCase())
+        || token.tokenTicker.toLowerCase().includes(searchField.toLowerCase())
+        || token.issuerName.toLowerCase().includes(searchField.toLowerCase());
     });
-    
 
     return (
       <div className='main'>
@@ -41,16 +40,16 @@ class Home extends Component {
         </Row>
         <Row type="flex" justify="center" gutter={36}>
           <Col span={18}>
-            <SearchBar searchChange={this.onSearchChange}/>
+            <SearchBar searchChange={this.onSearchChange} />
           </Col>
           <Actions />
         </Row>
         <Row>
-          <Col span={23}>            
-            <GridData tokenProp={filteredTokens} handleDelete={deleteToken}/>
+          <Col span={23}>
+            <GridData tokenProp={filteredTokens} handleDelete={deleteToken} />
           </Col>
-        </Row>      
-      </div> 
+        </Row>
+      </div>
     );
   }
 }

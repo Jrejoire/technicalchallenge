@@ -5,20 +5,20 @@ import 'antd/dist/antd.css';
 
 const Actions = () => {
 	return(
-		<Row>
-			<Col span={12}>
+		<Row type="flex" justify="start" gutter={16}>
+			<Col>
 			    <Button type="primary">
 			    	<Link to='/IssueToken'>
 			    	Issue Token
 			    	</Link>
-			    </Button>
-			</Col>
-			<Col span={12}>
+			    </Button>	
+		    </Col>
+		    <Col>	
 		        <Button type="normal" icon='download'>
 		            Export to CSV
 		        </Button>
-	        </Col>	
-        </Row>
+	        </Col>
+		</Row>
 	)
 };
 

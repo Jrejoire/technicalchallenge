@@ -12,28 +12,28 @@ class GridData extends Component {
 			},
 			{
 				title: 'Token ticker',
-				dataIndex: 'TokenTicker',
-				key: 'TokenTicker',
+				dataIndex: 'tokenTicker',
+				key: 'tokenTicker',
 			},
 			{
 				title: 'Total supply',
-				dataIndex: 'TotalSupply',
-				key: 'TotalSupply',
+				dataIndex: 'totalSupply',
+				key: 'totalSupply',
 			},
 			{
 				title: 'Creation date',
-				dataIndex: 'CreationDate',
-				key: 'CreationDate',
+				dataIndex: 'creationDate',
+				key: 'creationDate',
 			},
 			{
 				title: 'Issuer name',
-				dataIndex: 'IssuerName',
-				key: 'IssuerName',
+				dataIndex: 'issuerName',
+				key: 'issuerName',
 			},
 			{
 				title: 'Template',
-				dataIndex: 'Template',
-				key: 'Template',
+				dataIndex: 'template',
+				key: 'template',
 			},
 			{
 				title: 'Action',

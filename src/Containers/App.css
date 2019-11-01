@@ -1,9 +1,7 @@
 
 .app{
-	max-height: 1200px;
-	max-width: 1600px;
-	height: 100%;
-	width: 100vw;	
+	height: auto;
+	width: 100%;	
 }
 
 .menu{

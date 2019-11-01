@@ -38,14 +38,16 @@ class Home extends Component {
         <Row>
           <h1 className='title'>Token List</h1>
         </Row>
-        <Row type="flex" justify="center" gutter={36}>
-          <Col span={18}>
+        <Row type="flex" justify="center" gutter={16}>
+          <Col span={16}>
             <SearchBar searchChange={this.onSearchChange} />
           </Col>
-          <Actions />
+          <Col span={{xs:4, sm:8}}>
+            <Actions />
+          </Col>
         </Row>
         <Row>
-          <Col span={23}>
+          <Col span={22}>
             <GridData tokenProp={filteredTokens} handleDelete={deleteToken} />
           </Col>
         </Row>

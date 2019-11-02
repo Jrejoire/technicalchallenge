@@ -87,7 +87,7 @@ class App extends Component {
     }
 
     // Adding date and incremental key to object values.
-    values.CreationDate = date;
+    values.creationDate = date;
     values.key = (+lastTokenKey + 1).toString();
 
     const issuedToken = [...issuedTokenData, values];

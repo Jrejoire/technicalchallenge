@@ -71,27 +71,27 @@ class TokenForm extends Component {
           })(<Input placeholder="Enter token name" />)}
         </Form.Item>
         <Form.Item label="Token Ticker">
-          {getFieldDecorator('TokenTicker', {
+          {getFieldDecorator('tokenTicker', {
             rules: [{ required: true, message: 'Please input your token ticker!' }],
           })(<Input placeholder='Enter token ticker' />)}
         </Form.Item>
         <Form.Item label="Total Supply">
-          {getFieldDecorator('TotalSupply', {
+          {getFieldDecorator('totalSupply', {
             rules: [{ required: true, message: 'Please input the total supply!' }],
           })(<InputNumber placeholder='Enter total supply' style={{ width: '100%' }} />)}
         </Form.Item>
         <Form.Item label="Issuer Name">
-          {getFieldDecorator('IssuerName', {
+          {getFieldDecorator('issuerName', {
             rules: [{ required: true, message: 'Please input the name of the issuer!' }],
           })(<Input placeholder='Enter issuer name' />)}
         </Form.Item>
         <Form.Item label="Token Template" required="true">
-          {getFieldDecorator('Template', {
+          {getFieldDecorator('template', {
             rules: [{ required: true, message: 'Please input the token template!' }],
           })(<Input placeholder='Enter token template' />)}
         </Form.Item>
         <Form.Item label="Country" required="true">
-          {getFieldDecorator('Country', { initialValue: 'Switzerland' }, {
+          {getFieldDecorator('country', { initialValue: 'Switzerland' }, {
             rules: [{ required: true, message: 'Please select your country!' }],
           })(<Select placeholder="Please select a country">
             {countryName.map(country => <Option key={country.code} value={country.name}>{country.name}</Option>)}

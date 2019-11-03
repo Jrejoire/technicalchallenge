@@ -67,13 +67,13 @@ class App extends Component {
   }
 
   setsDate = () => {
-    let mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
+    let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
       "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
     let date = new Date();
-    let dateDuJour = date.getDate() + " ";   // numero du jour
-    dateDuJour += mois[date.getMonth()] + " ";   // mois
-    dateDuJour += date.getFullYear(); //année
-    this.setState({ date: dateDuJour });
+    let today = date.getDate() + " ";   // numero du jour
+    today += months[date.getMonth()] + " ";   // mois
+    today += date.getFullYear(); //année
+    this.setState({ date: today });
   }
 
   newTokenCallback = (values) => {
@@ -87,7 +87,7 @@ class App extends Component {
     }
 
     // Adding date and incremental key to object values.
-    values.CreationDate = date;
+    values.creationDate = date;
     values.key = (+lastTokenKey + 1).toString();
 
     const issuedToken = [...issuedTokenData, values];

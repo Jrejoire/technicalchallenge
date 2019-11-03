@@ -1,5 +1,6 @@
 import { HashRouter, Route } from 'react-router-dom';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -7,6 +8,20 @@ import './App.css';
 import InlineMenu from '../Components/Menu';
 import Home from '../Components/Home';
 import IssueToken from '../Components/IssueToken';
+
+import { setSearchField } from '../actions';
+
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchTokens.searchField
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  }
+}
 
 // Data could be fetched from external source
 const initialData = [
@@ -33,6 +48,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     this.setsDate();
 
     // Saving initial Data to local storage.
@@ -128,4 +144,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

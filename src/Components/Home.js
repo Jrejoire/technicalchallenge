@@ -42,7 +42,7 @@ class Home extends Component {
           <Col span={16}>
             <SearchBar searchChange={this.onSearchChange} />
           </Col>
-          <Col span={{xs:4, sm:8}}>
+          <Col span={8}>
             <Actions />
           </Col>
         </Row>

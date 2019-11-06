@@ -7,24 +7,9 @@ import Actions from '../Components/ActionButtons';
 import GridData from '../Components/GridData';
 
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchField: '',
-    }
-  }
-
-  onSearchChange = (event) => {
-    if (event.target.value.length > 2) {
-      this.setState({ searchField: event.target.value })
-    } else {
-      this.setState({ searchField: '' })
-    }
-  }
 
   render() {
-    const { searchField } = this.state;
-    const { tokenDataProp, deleteToken } = this.props;
+    const { tokenDataProp, deleteToken, searchField, onSearchChange } = this.props;
 
     //to filter the search
     const filteredTokens = tokenDataProp.filter(token => {
@@ -40,7 +25,7 @@ class Home extends Component {
         </Row>
         <Row type="flex" justify="center" gutter={16}>
           <Col span={16}>
-            <SearchBar searchChange={this.onSearchChange} />
+            <SearchBar searchChange={onSearchChange} />
           </Col>
           <Col span={8}>
             <Actions />

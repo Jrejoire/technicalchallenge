@@ -1,7 +1,7 @@
 import { HashRouter, Route } from 'react-router-dom';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Col, Row } from 'antd';
+import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import './App.css';
 
@@ -9,19 +9,7 @@ import InlineMenu from '../Components/Menu';
 import Home from '../Components/Home';
 import IssueToken from '../Components/IssueToken';
 
-import { setSearchField } from '../actions';
-
-const mapStateToProps = state => {
-  return {
-    searchField: state.searchTokens.searchField
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
-  }
-}
+import { setSearchField, setToken, setDate } from '../actions';
 
 // Data could be fetched from external source
 const initialData = [
@@ -35,6 +23,37 @@ const initialData = [
     template: 'ERC20',
   },
 ];
+
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchField,
+    tokenData: state.tokenData
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => {
+      if (event.target.value.length > 2) {
+        dispatch(setSearchField(event.target.value))
+      } else {
+        dispatch(setSearchField(''))
+      }
+    },
+    
+    //date to add here
+
+    newTokenCallback: (values) => {
+      let lastTokenKey = this.props.tokenData.slice(-1)[0].key
+
+      // Adding date and incremental key to object values.
+      values.creationDate = this.props.date;
+      values.key = (+lastTokenKey + 1).toString();
+
+      dispatch(setToken(values))
+    }
+  }
+}
 
 class App extends Component {
   constructor(props) {
@@ -92,23 +111,7 @@ class App extends Component {
     this.setState({ date: today });
   }
 
-  newTokenCallback = (values) => {
-    const { displayedTokenData, issuedTokenData, date } = this.state;
-    let lastTokenKey = null;
-
-    if (displayedTokenData.length === 0) {
-      lastTokenKey = initialData.slice(-1)[0].key;
-    } else {
-      lastTokenKey = displayedTokenData.slice(-1)[0].key
-    }
-
-    // Adding date and incremental key to object values.
-    values.creationDate = date;
-    values.key = (+lastTokenKey + 1).toString();
-
-    const issuedToken = [...issuedTokenData, values];
-    this.setState({ issuedTokenData: issuedToken });
-  }
+  
 
   handleDelete = (key) => {
     if (this.state.initialTokenData.some(token => token.key === key)) {
@@ -123,6 +126,7 @@ class App extends Component {
 
   render() {
     const { displayedTokenData } = this.state;
+    const { searchField, onSearchChange } = this.props;
 
     return (
       <HashRouter basename='/'>
@@ -133,7 +137,7 @@ class App extends Component {
             </Col>
             <Col span={18}>
               <Route exact path='/' render={() =>
-                <Home tokenDataProp={displayedTokenData} deleteToken={this.handleDelete} />} />
+                <Home tokenDataProp={displayedTokenData} deleteToken={this.handleDelete} searchField={searchField} onSearchChange={onSearchChange} /> } />
               <Route path='/IssueToken' render={() =>
                 <IssueToken callbackMethod={this.newTokenCallback} />} />
             </Col>

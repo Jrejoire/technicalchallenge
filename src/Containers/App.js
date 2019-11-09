@@ -11,23 +11,11 @@ import IssueToken from '../Components/IssueToken';
 
 import { setSearchField, setToken, setDate } from '../actions';
 
-// Data could be fetched from external source
-const initialData = [
-  {
-    key: '1',
-    tokenName: 'TTism',
-    tokenTicker: 'TTT',
-    totalSupply: 100000,
-    creationDate: '17 Mai 2019',
-    issuerName: 'Taurus Group SA',
-    template: 'ERC20',
-  },
-];
-
 const mapStateToProps = state => {
   return {
-    searchField: state.searchField,
-    tokenData: state.tokenData
+    searchField: state.searchTokens.searchField,
+    tokenData: state.getTokenData.tokenData,
+    date: state.getDate.date
   }
 }
 
@@ -41,92 +29,55 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     
-    //date to add here
+    setsDate: () => {
+      let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
+        "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
+      let date = new Date();
+      let today = date.getDate() + " ";   // numero du jour
+      today += months[date.getMonth()] + " ";   // mois
+      today += date.getFullYear(); //année
+      dispatch(setDate(today))
+    },
 
-    newTokenCallback: (values) => {
-      let lastTokenKey = this.props.tokenData.slice(-1)[0].key
-
-      // Adding date and incremental key to object values.
-      values.creationDate = this.props.date;
-      values.key = (+lastTokenKey + 1).toString();
-
+    addTokenData: (values) => {
       dispatch(setToken(values))
     }
   }
 }
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayedTokenData: [],
-      initialTokenData: [],
-      issuedTokenData: [],
-      date: '',
-    }
-  }
 
   componentDidMount() {
-
-    this.setsDate();
+    const { setsDate, addTokenData } = this.props;
+    
+    setsDate();
 
     // Saving initial Data to local storage.
-    localStorage.setItem('initialTokenData', JSON.stringify(initialData));
+    //localStorage.setItem('tokenData', JSON.stringify(tokenData));
 
     // Setting state variables from local storage.
-    localStorage.getItem('initialTokenData') && this.setState({
-      initialTokenData: JSON.parse(localStorage.getItem('initialTokenData')),
-      isLoading: false,
-    });
-    localStorage.getItem('issuedTokenData') && this.setState({
-      issuedTokenData: JSON.parse(localStorage.getItem('issuedTokenData')),
-      isLoading: false,
-    });
-
-    // Updating displayed token state at start.
-    const { initialTokenData, issuedTokenData } = this.state;
-    const displayedTokenData = [...initialTokenData, ...issuedTokenData];
-    this.setState({ displayedTokenData: displayedTokenData });
+    localStorage.getItem('tokenData') && addTokenData(JSON.parse(localStorage.getItem('tokenData')));
   }
-
-  componentDidUpdate() {
-    const { initialTokenData, issuedTokenData } = this.state;
-    const displayedTokenData = [...initialTokenData, ...issuedTokenData];
-
-    // Updating displayed token state and local storage on array change.
-    if (displayedTokenData.length !== this.state.displayedTokenData.length) {
-      this.setState({ displayedTokenData: displayedTokenData })
-      localStorage.setItem('issuedTokenData', JSON.stringify(issuedTokenData));
-    }
-    ;
-  }
-
-  setsDate = () => {
-    let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
-      "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
-    let date = new Date();
-    let today = date.getDate() + " ";   // numero du jour
-    today += months[date.getMonth()] + " ";   // mois
-    today += date.getFullYear(); //année
-    this.setState({ date: today });
-  }
-
-  
 
   handleDelete = (key) => {
-    if (this.state.initialTokenData.some(token => token.key === key)) {
-      const deletedInitialData = this.state.initialTokenData.filter(token => token.key !== key);
-      this.setState({ initialTokenData: deletedInitialData });
-    } else {
-      const deletedIssueToken = this.state.issuedTokenData.filter(token => token.key !== key);
-      this.setState({ issuedTokenData: deletedIssueToken });
+    if (this.props.tokenData.some(token => token.key === key)) {
+      const deletedInitialData = this.props.tokenData.filter(token => token.key !== key);
+      this.props.addTokenData(deletedInitialData);
     }
+  }
+
+  newTokenCallback = (values) => {
+    const { tokenData, addTokenData } = this.props;
+    let lastTokenKey = tokenData.slice(-1)[0].key || 1;
+    // Adding date and incremental key to object values.
+    values.creationDate = this.props.date;
+    values.key = (+lastTokenKey + 1).toString();
+    addTokenData(values);
   }
 
 
   render() {
-    const { displayedTokenData } = this.state;
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, tokenData } = this.props;
 
     return (
       <HashRouter basename='/'>
@@ -137,7 +88,7 @@ class App extends Component {
             </Col>
             <Col span={18}>
               <Route exact path='/' render={() =>
-                <Home tokenDataProp={displayedTokenData} deleteToken={this.handleDelete} searchField={searchField} onSearchChange={onSearchChange} /> } />
+                <Home tokenDataProp={tokenData} deleteToken={this.handleDelete} searchField={searchField} onSearchChange={onSearchChange} /> } />
               <Route path='/IssueToken' render={() =>
                 <IssueToken callbackMethod={this.newTokenCallback} />} />
             </Col>

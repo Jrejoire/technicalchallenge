@@ -9,26 +9,17 @@ import InlineMenu from '../Components/Menu';
 import Home from '../Components/Home';
 import IssueToken from '../Components/IssueToken';
 
-import { setSearchField, setToken, setDate } from '../actions';
+import { setToken, setDate } from '../actions';
 
 const mapStateToProps = state => {
   return {
-    searchField: state.searchTokens.searchField,
     tokenData: state.getTokenData.tokenData,
     date: state.getDate.date
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearchChange: (event) => {
-      if (event.target.value.length > 2) {
-        dispatch(setSearchField(event.target.value))
-      } else {
-        dispatch(setSearchField(''))
-      }
-    },
-    
+  return { 
     setsDate: () => {
       let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
         "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
@@ -59,26 +50,18 @@ class App extends Component {
     localStorage.getItem('tokenData') && addTokenData(JSON.parse(localStorage.getItem('tokenData')));
   }
 
-  handleDelete = (key) => {
-    if (this.props.tokenData.some(token => token.key === key)) {
-      const deletedInitialData = this.props.tokenData.filter(token => token.key !== key);
-      this.props.addTokenData(deletedInitialData);
-    }
-  }
 
   newTokenCallback = (values) => {
-    const { tokenData, addTokenData } = this.props;
+    const { date, tokenData, addTokenData } = this.props;
     let lastTokenKey = tokenData.slice(-1)[0].key || 1;
     // Adding date and incremental key to object values.
-    values.creationDate = this.props.date;
+    values.creationDate = date;
     values.key = (+lastTokenKey + 1).toString();
     addTokenData(values);
   }
 
 
   render() {
-    const { searchField, onSearchChange, tokenData } = this.props;
-
     return (
       <HashRouter basename='/'>
         <div className='app'>
@@ -88,7 +71,7 @@ class App extends Component {
             </Col>
             <Col span={18}>
               <Route exact path='/' render={() =>
-                <Home tokenDataProp={tokenData} deleteToken={this.handleDelete} searchField={searchField} onSearchChange={onSearchChange} /> } />
+                <Home /> } />
               <Route path='/IssueToken' render={() =>
                 <IssueToken callbackMethod={this.newTokenCallback} />} />
             </Col>

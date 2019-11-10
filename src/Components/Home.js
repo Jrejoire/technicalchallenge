@@ -1,37 +1,56 @@
-import React, {
-  Component
-} from 'react';
-import {
-  Col,
-  Row
-} from 'antd';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 
 import SearchBar from '../Components/SearchBar';
 import Actions from '../Components/ActionButtons';
 import GridData from '../Components/GridData';
 
-class Home extends Component {
+import { setToken, setSearchField } from '../actions';
 
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchTokens.searchField,
+    tokenData: state.getTokenData.tokenData,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => {
+      if (event.target.value.length > 2) {
+        dispatch(setSearchField(event.target.value))
+      } else {
+        dispatch(setSearchField(''))
+      }
+    },
+    handleDelete: (value) => {
+      if (this.props.tokenData.some(token => token.key === value)) {
+        const deletedData = this.props.tokenData.filter(token => token.key !== value);
+        dispatch(setToken(deletedData));
+      }
+    }
+  }
+}
+
+class Home extends Component {
   render() {
-    const {
-      tokenData,
-      deleteToken,
-      searchField,
-      onSearchChange
-    } = this.props;
-  
+    const {tokenData, handleDelete, searchField, onSearchChange} = this.props;
+
     let filteredTokens = [];
-    if (tokenData.length !== 0){
-    //to filter the search
+    if (tokenData !== undefined) {
+      //to filter the search
       filteredTokens = tokenData.filter(token => {
         return token.tokenName.toLowerCase().includes(searchField.toLowerCase()) ||
           token.tokenTicker.toLowerCase().includes(searchField.toLowerCase()) ||
           token.issuerName.toLowerCase().includes(searchField.toLowerCase());
       });
-    } 
+    } else {
+      filteredTokens = tokenData;
+    }
 
-    return ( 
+    return (
       <div className = 'main' >
         <Row >
           <h1 className = 'title' > Token List </h1> 
@@ -46,7 +65,7 @@ class Home extends Component {
         </Row>
         <Row>
           <Col span = {22}>
-            <GridData tokenProp = {filteredTokens} handleDelete = {deleteToken}/>
+            <GridData tokenProp = {filteredTokens} handleDelete = {handleDelete}/>
           </Col>
         </Row>
       </div>
@@ -54,4 +73,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

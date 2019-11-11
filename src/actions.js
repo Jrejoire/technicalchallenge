@@ -1,6 +1,4 @@
-import { CHANGE_SEARCH_FIELD } from './constants.js';
-import { TOKEN_DATA } from './constants.js';
-import { DATE } from './constants.js';
+import { CHANGE_SEARCH_FIELD, TOKEN_DATA, DATE, TOKEN_UPDATE } from './constants.js';
 
 export const setSearchField = (text) => ({
 	type: CHANGE_SEARCH_FIELD,
@@ -15,4 +13,9 @@ export const setToken = (token) => ({
 export const setDate = (date) => ({
 	type: DATE,
 	payload: date
+})
+
+export const updateToken = (data) => ({
+	type: TOKEN_UPDATE,
+	payload: data
 })

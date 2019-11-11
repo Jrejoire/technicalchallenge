@@ -1,10 +1,7 @@
 import {
-	CHANGE_SEARCH_FIELD
-} from './constants.js';
-import {
-	TOKEN_DATA
-} from './constants.js';
-import {
+	CHANGE_SEARCH_FIELD,
+	TOKEN_DATA,
+	TOKEN_UPDATE,
 	DATE
 } from './constants.js';
 
@@ -25,7 +22,7 @@ export const searchTokens = (state = initialStateSearch, action = {}) => {
 
 const initialStateToken = {
 	tokenData: [{
-		key: '1',
+		key: 1,
 		tokenName: 'TTism',
 		tokenTicker: 'TTT',
 		totalSupply: 100000,
@@ -41,6 +38,10 @@ export const getTokenData = (state = initialStateToken, action = {}) => {
 			return { ...state,
 				tokenData: [...state.tokenData, action.payload]
 			};
+		case TOKEN_UPDATE:
+			return Object.assign({}, state, {
+				tokenData: action.payload 
+			});
 		default:
 			return state;
 	}

@@ -7,7 +7,7 @@ import SearchBar from '../Components/SearchBar';
 import Actions from '../Components/ActionButtons';
 import GridData from '../Components/GridData';
 
-import { setToken, setSearchField } from '../actions';
+import { setSearchField, updateToken } from '../actions';
 
 const mapStateToProps = state => {
   return {
@@ -25,30 +25,32 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(setSearchField(''))
       }
     },
-    handleDelete: (value) => {
-      if (this.props.tokenData.some(token => token.key === value)) {
-        const deletedData = this.props.tokenData.filter(token => token.key !== value);
-        dispatch(setToken(deletedData));
-      }
+    filterTokenData: (data) => {
+      dispatch(updateToken(data))
+      localStorage.setItem('tokenData', JSON.stringify(data));
     }
   }
 }
 
 class Home extends Component {
-  render() {
-    const {tokenData, handleDelete, searchField, onSearchChange} = this.props;
 
-    let filteredTokens = [];
-    if (tokenData !== undefined) {
-      //to filter the search
-      filteredTokens = tokenData.filter(token => {
-        return token.tokenName.toLowerCase().includes(searchField.toLowerCase()) ||
-          token.tokenTicker.toLowerCase().includes(searchField.toLowerCase()) ||
-          token.issuerName.toLowerCase().includes(searchField.toLowerCase());
-      });
-    } else {
-      filteredTokens = tokenData;
+  handleDelete = (key) => {
+    const { tokenData, filterTokenData } = this.props;
+    if (tokenData.some(token => token.key === key)) {
+      const deletedData = tokenData.filter(token => token.key !== key);
+      filterTokenData(deletedData);
     }
+  }
+
+  render() {
+    const {tokenData, searchField, onSearchChange} = this.props;
+
+    //to filter the search
+    let filteredTokens = tokenData.filter(token => {
+      return token.tokenName.toLowerCase().includes(searchField.toLowerCase()) ||
+        token.tokenTicker.toLowerCase().includes(searchField.toLowerCase()) ||
+        token.issuerName.toLowerCase().includes(searchField.toLowerCase());
+    });
 
     return (
       <div className = 'main' >
@@ -65,7 +67,7 @@ class Home extends Component {
         </Row>
         <Row>
           <Col span = {22}>
-            <GridData tokenProp = {filteredTokens} handleDelete = {handleDelete}/>
+            <GridData tokenProp = {filteredTokens} handleDelete = {this.handleDelete}/>
           </Col>
         </Row>
       </div>

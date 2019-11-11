@@ -9,7 +9,7 @@ import InlineMenu from '../Components/Menu';
 import Home from '../Components/Home';
 import IssueToken from '../Components/IssueToken';
 
-import { setToken, setDate } from '../actions';
+import { setToken, setDate, updateToken } from '../actions';
 
 const mapStateToProps = state => {
   return {
@@ -32,6 +32,10 @@ const mapDispatchToProps = (dispatch) => {
 
     addTokenData: (values) => {
       dispatch(setToken(values))
+    },
+    updateTokenData: (data) => {
+      dispatch(updateToken(data))
+      localStorage.setItem('tokenData', JSON.stringify(data));
     }
   }
 }
@@ -39,25 +43,33 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
 
   componentDidMount() {
-    const { setsDate, addTokenData } = this.props;
+    const { setsDate, updateTokenData, tokenData } = this.props;
     
     setsDate();
 
-    // Saving initial Data to local storage.
-    //localStorage.setItem('tokenData', JSON.stringify(tokenData));
-
     // Setting state variables from local storage.
-    localStorage.getItem('tokenData') && addTokenData(JSON.parse(localStorage.getItem('tokenData')));
-  }
-
+    localStorage.getItem('tokenData') && updateTokenData(JSON.parse(localStorage.getItem('tokenData')));
+    
+    this.setState({ initialDataLength : tokenData.length });
+  } 
 
   newTokenCallback = (values) => {
     const { date, tokenData, addTokenData } = this.props;
-    let lastTokenKey = tokenData.slice(-1)[0].key || 1;
+
+    let lastTokenKey = null;
+
+    if (tokenData.length === 0) {
+      lastTokenKey = 0;
+    } else {
+      lastTokenKey = tokenData.slice(-1)[0].key
+    }
+
     // Adding date and incremental key to object values.
     values.creationDate = date;
     values.key = (+lastTokenKey + 1).toString();
     addTokenData(values);
+
+    //localStorage.setItem('tokenData', JSON.stringify(tokenData));
   }
 
 

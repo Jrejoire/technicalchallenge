@@ -21,12 +21,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return { 
     setsDate: () => {
-      let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
-        "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
       let date = new Date();
-      let today = date.getDate() + " ";   // numero du jour
-      today += months[date.getMonth()] + " ";   // mois
-      today += date.getFullYear(); //année
+      let today = date.getDate() + "/";   // day
+      today += (date.getMonth()+1) + "/";   // month
+      today += date.getFullYear(); // year
       dispatch(setDate(today))
     },
 
@@ -43,14 +41,12 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
 
   componentDidMount() {
-    const { setsDate, updateTokenData, tokenData } = this.props;
+    const { setsDate, updateTokenData } = this.props;
     
     setsDate();
-
+    
     // Setting state variables from local storage.
     localStorage.getItem('tokenData') && updateTokenData(JSON.parse(localStorage.getItem('tokenData')));
-    
-    this.setState({ initialDataLength : tokenData.length });
   } 
 
   newTokenCallback = (values) => {
@@ -67,9 +63,10 @@ class App extends Component {
     // Adding date and incremental key to object values.
     values.creationDate = date;
     values.key = (+lastTokenKey + 1).toString();
+
     addTokenData(values);
 
-    //localStorage.setItem('tokenData', JSON.stringify(tokenData));
+    localStorage.setItem('tokenData', JSON.stringify([...tokenData,values]));
   }
 
 

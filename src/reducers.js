@@ -26,7 +26,7 @@ const initialStateToken = {
 		tokenName: 'TTism',
 		tokenTicker: 'TTT',
 		totalSupply: 100000,
-		creationDate: '17 Mai 2019',
+		creationDate: '17/05/2019',
 		issuerName: 'Taurus Group SA',
 		template: 'ERC20'
 	}]

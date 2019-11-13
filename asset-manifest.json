@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/technicalchallenge/static/css/main.5003b35f.chunk.css",
-    "main.js": "/technicalchallenge/static/js/main.86b0ac27.chunk.js",
-    "main.js.map": "/technicalchallenge/static/js/main.86b0ac27.chunk.js.map",
-    "runtime~main.js": "/technicalchallenge/static/js/runtime~main.bbb978e9.js",
-    "runtime~main.js.map": "/technicalchallenge/static/js/runtime~main.bbb978e9.js.map",
-    "static/css/2.a317ec87.chunk.css": "/technicalchallenge/static/css/2.a317ec87.chunk.css",
-    "static/js/2.c7ee0fac.chunk.js": "/technicalchallenge/static/js/2.c7ee0fac.chunk.js",
-    "static/js/2.c7ee0fac.chunk.js.map": "/technicalchallenge/static/js/2.c7ee0fac.chunk.js.map",
-    "index.html": "/technicalchallenge/index.html",
-    "precache-manifest.d76100cd585b2727fa7ff91772612fb5.js": "/technicalchallenge/precache-manifest.d76100cd585b2727fa7ff91772612fb5.js",
-    "service-worker.js": "/technicalchallenge/service-worker.js",
-    "static/css/2.a317ec87.chunk.css.map": "/technicalchallenge/static/css/2.a317ec87.chunk.css.map",
-    "static/css/main.5003b35f.chunk.css.map": "/technicalchallenge/static/css/main.5003b35f.chunk.css.map"
+    "main.css": "/tokenlistapp/static/css/main.742016ea.chunk.css",
+    "main.js": "/tokenlistapp/static/js/main.acfe3671.chunk.js",
+    "main.js.map": "/tokenlistapp/static/js/main.acfe3671.chunk.js.map",
+    "runtime~main.js": "/tokenlistapp/static/js/runtime~main.a25963d1.js",
+    "runtime~main.js.map": "/tokenlistapp/static/js/runtime~main.a25963d1.js.map",
+    "static/css/2.a317ec87.chunk.css": "/tokenlistapp/static/css/2.a317ec87.chunk.css",
+    "static/js/2.42b41ece.chunk.js": "/tokenlistapp/static/js/2.42b41ece.chunk.js",
+    "static/js/2.42b41ece.chunk.js.map": "/tokenlistapp/static/js/2.42b41ece.chunk.js.map",
+    "index.html": "/tokenlistapp/index.html",
+    "precache-manifest.d0dc28876922dc412ecc5dbb69a86dff.js": "/tokenlistapp/precache-manifest.d0dc28876922dc412ecc5dbb69a86dff.js",
+    "service-worker.js": "/tokenlistapp/service-worker.js",
+    "static/css/2.a317ec87.chunk.css.map": "/tokenlistapp/static/css/2.a317ec87.chunk.css.map",
+    "static/css/main.742016ea.chunk.css.map": "/tokenlistapp/static/css/main.742016ea.chunk.css.map"
   }
 }

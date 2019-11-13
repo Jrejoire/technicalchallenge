@@ -3,11 +3,11 @@ import {
 	TOKEN_DATA,
 	TOKEN_UPDATE,
 	DATE
-} from './constants.js';
+} from "./constants.js";
 
 const initialStateSearch = {
-	searchField: ''
-}
+	searchField: ""
+};
 
 export const searchTokens = (state = initialStateSearch, action = {}) => {
 	switch (action.type) {
@@ -18,38 +18,41 @@ export const searchTokens = (state = initialStateSearch, action = {}) => {
 		default:
 			return state;
 	}
-}
+};
 
 const initialStateToken = {
-	tokenData: [{
-		key: 1,
-		tokenName: 'TTism',
-		tokenTicker: 'TTT',
-		totalSupply: 100000,
-		creationDate: '17/05/2019',
-		issuerName: 'Taurus Group SA',
-		template: 'ERC20'
-	}]
-}
+	tokenData: [
+		{
+			key: 1,
+			tokenName: "TTism",
+			tokenTicker: "TTT",
+			totalSupply: 100000,
+			creationDate: "17/05/2019",
+			issuerName: "Taurus Group SA",
+			template: "ERC20"
+		}
+	]
+};
 
 export const getTokenData = (state = initialStateToken, action = {}) => {
 	switch (action.type) {
 		case TOKEN_DATA:
-			return { ...state,
+			return {
+				...state,
 				tokenData: [...state.tokenData, action.payload]
 			};
 		case TOKEN_UPDATE:
 			return Object.assign({}, state, {
-				tokenData: action.payload 
+				tokenData: action.payload
 			});
 		default:
 			return state;
 	}
-}
+};
 
 const initialStateDate = {
-	date: ''
-}
+	date: ""
+};
 
 export const getDate = (state = initialStateDate, action = {}) => {
 	switch (action.type) {
@@ -60,4 +63,4 @@ export const getDate = (state = initialStateDate, action = {}) => {
 		default:
 			return state;
 	}
-}
+};

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/token-list/static/css/main.742016ea.chunk.css",
-    "main.js": "/token-list/static/js/main.d2c73a25.chunk.js",
-    "main.js.map": "/token-list/static/js/main.d2c73a25.chunk.js.map",
-    "runtime~main.js": "/token-list/static/js/runtime~main.33ad3a7f.js",
-    "runtime~main.js.map": "/token-list/static/js/runtime~main.33ad3a7f.js.map",
-    "static/css/2.a317ec87.chunk.css": "/token-list/static/css/2.a317ec87.chunk.css",
-    "static/js/2.0e96a51e.chunk.js": "/token-list/static/js/2.0e96a51e.chunk.js",
-    "static/js/2.0e96a51e.chunk.js.map": "/token-list/static/js/2.0e96a51e.chunk.js.map",
-    "index.html": "/token-list/index.html",
-    "precache-manifest.334331a53d244e2e7ca8094df919b1cd.js": "/token-list/precache-manifest.334331a53d244e2e7ca8094df919b1cd.js",
-    "service-worker.js": "/token-list/service-worker.js",
-    "static/css/2.a317ec87.chunk.css.map": "/token-list/static/css/2.a317ec87.chunk.css.map",
-    "static/css/main.742016ea.chunk.css.map": "/token-list/static/css/main.742016ea.chunk.css.map"
+    "main.css": "/technicalchallenge/static/css/main.742016ea.chunk.css",
+    "main.js": "/technicalchallenge/static/js/main.674a961a.chunk.js",
+    "main.js.map": "/technicalchallenge/static/js/main.674a961a.chunk.js.map",
+    "runtime~main.js": "/technicalchallenge/static/js/runtime~main.bbb978e9.js",
+    "runtime~main.js.map": "/technicalchallenge/static/js/runtime~main.bbb978e9.js.map",
+    "static/css/2.a317ec87.chunk.css": "/technicalchallenge/static/css/2.a317ec87.chunk.css",
+    "static/js/2.e6947b42.chunk.js": "/technicalchallenge/static/js/2.e6947b42.chunk.js",
+    "static/js/2.e6947b42.chunk.js.map": "/technicalchallenge/static/js/2.e6947b42.chunk.js.map",
+    "index.html": "/technicalchallenge/index.html",
+    "precache-manifest.2da62d3b6e51ad5926dafcf62dad1d17.js": "/technicalchallenge/precache-manifest.2da62d3b6e51ad5926dafcf62dad1d17.js",
+    "service-worker.js": "/technicalchallenge/service-worker.js",
+    "static/css/2.a317ec87.chunk.css.map": "/technicalchallenge/static/css/2.a317ec87.chunk.css.map",
+    "static/css/main.742016ea.chunk.css.map": "/technicalchallenge/static/css/main.742016ea.chunk.css.map"
   }
 }

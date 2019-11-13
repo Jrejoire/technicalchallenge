@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/tokenlistapp/static/css/main.742016ea.chunk.css",
-    "main.js": "/tokenlistapp/static/js/main.acfe3671.chunk.js",
-    "main.js.map": "/tokenlistapp/static/js/main.acfe3671.chunk.js.map",
-    "runtime~main.js": "/tokenlistapp/static/js/runtime~main.a25963d1.js",
-    "runtime~main.js.map": "/tokenlistapp/static/js/runtime~main.a25963d1.js.map",
-    "static/css/2.a317ec87.chunk.css": "/tokenlistapp/static/css/2.a317ec87.chunk.css",
-    "static/js/2.42b41ece.chunk.js": "/tokenlistapp/static/js/2.42b41ece.chunk.js",
-    "static/js/2.42b41ece.chunk.js.map": "/tokenlistapp/static/js/2.42b41ece.chunk.js.map",
-    "index.html": "/tokenlistapp/index.html",
-    "precache-manifest.d0dc28876922dc412ecc5dbb69a86dff.js": "/tokenlistapp/precache-manifest.d0dc28876922dc412ecc5dbb69a86dff.js",
-    "service-worker.js": "/tokenlistapp/service-worker.js",
-    "static/css/2.a317ec87.chunk.css.map": "/tokenlistapp/static/css/2.a317ec87.chunk.css.map",
-    "static/css/main.742016ea.chunk.css.map": "/tokenlistapp/static/css/main.742016ea.chunk.css.map"
+    "main.css": "/token-list/static/css/main.742016ea.chunk.css",
+    "main.js": "/token-list/static/js/main.d2c73a25.chunk.js",
+    "main.js.map": "/token-list/static/js/main.d2c73a25.chunk.js.map",
+    "runtime~main.js": "/token-list/static/js/runtime~main.33ad3a7f.js",
+    "runtime~main.js.map": "/token-list/static/js/runtime~main.33ad3a7f.js.map",
+    "static/css/2.a317ec87.chunk.css": "/token-list/static/css/2.a317ec87.chunk.css",
+    "static/js/2.0e96a51e.chunk.js": "/token-list/static/js/2.0e96a51e.chunk.js",
+    "static/js/2.0e96a51e.chunk.js.map": "/token-list/static/js/2.0e96a51e.chunk.js.map",
+    "index.html": "/token-list/index.html",
+    "precache-manifest.334331a53d244e2e7ca8094df919b1cd.js": "/token-list/precache-manifest.334331a53d244e2e7ca8094df919b1cd.js",
+    "service-worker.js": "/token-list/service-worker.js",
+    "static/css/2.a317ec87.chunk.css.map": "/token-list/static/css/2.a317ec87.chunk.css.map",
+    "static/css/main.742016ea.chunk.css.map": "/token-list/static/css/main.742016ea.chunk.css.map"
   }
 }

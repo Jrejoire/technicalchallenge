@@ -7,6 +7,7 @@
     "antd": "^3.20.7",
     "esformatter": "^0.11.2",
     "gh-pages": "^2.1.0",
+    "nodemon": "^1.19.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.1",
@@ -17,7 +18,7 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
